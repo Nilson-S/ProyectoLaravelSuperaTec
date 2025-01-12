@@ -13,7 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');

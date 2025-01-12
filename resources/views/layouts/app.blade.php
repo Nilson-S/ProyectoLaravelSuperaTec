@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +16,40 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    <style>
+        .number-box {
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+
+        .border-start {
+            border-left: 3px solid #007bff;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        }
+
+        .card-title {
+            text-align: center;
+        }
+
+        .card-text {
+            text-align: justify;
+        }
+    </style>
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
@@ -34,22 +68,26 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">Sobre Nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('cms.blog.index') }}">Blog/Noticias</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contáctanos</a></li>
-                
+
                     @auth
                         <!-- Verificación solo para el rol de Admin -->
                         @if (Auth::user()->hasRole('Admin'))
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="cmsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="cmsDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Administrador
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="cmsDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('cms.pages.index') }}">Gestión de Páginas</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('cms.blog.index') }}">Gestión de Blog</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Gestión de Usuarios/Roles</a></li>
+                              <!--      <li><a class="dropdown-item" href="{{ route('cms.pages.index') }}">Gestión de
+                                            Páginas</a></li> -->
+                                    <li><a class="dropdown-item" href="{{ route('cms.blog.index') }}">Gestión de Blog</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('usuarios.index') }}">Gestión de
+                                            Usuarios/Roles</a></li>
                                 </ul>
                             </li>
                         @endif
-                
+
                         <!-- Opciones comunes para todos los usuarios autenticados -->
                         <li class="nav-item"><a class="nav-link" href="{{ route('profile') }}">Mi Perfil</a></li>
                         <li class="nav-item">
@@ -67,9 +105,10 @@
         </div>
     </nav>
 </head>
+
 <body>
     <div id="app">
-        
+
 
         <main class="py-4">
             @yield('content')
@@ -77,4 +116,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
